@@ -18,6 +18,15 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
+pool.getConnection()
+    .then(() => {
+        console.log("DB Connection successful!");
+    })
+    .catch((err) => {
+        console.error("DB Connection failed: ", err);
+        process.exit(1); // DB 연결 실패 시 서버 종료
+    });
+
 // 예제 API - users 테이블 조회
 app.get("/user", async (req, res) => {
     try {
