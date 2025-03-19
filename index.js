@@ -42,7 +42,7 @@ app.get("/user", async (req, res) => {
 });
 
 // 서버 실행
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.APP_PORT || 5000;
 app.listen(PORT, () => {
     console.log(`🚀 Proxy server running on http://localhost:${PORT}`);
 });
