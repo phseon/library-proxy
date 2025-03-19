@@ -21,14 +21,18 @@ const pool = mysql.createPool({
     keepAliveInitialDelay: 0 // 즉시 KeepAlive 패킷 전송
 });
 
-pool.getConnection()
-    .then(() => {
+const checkDbConnection = async () => {
+    try {
+        const connection = await pool.getConnection();
         console.log("DB Connection successful!");
-    })
-    .catch((err) => {
+        connection.release(); // 연결 반환
+    } catch (err) {
         console.error("DB Connection failed: ", err);
         process.exit(1); // DB 연결 실패 시 서버 종료
-    });
+    }
+};
+
+checkDbConnection();
 
 // 예제 API - users 테이블 조회
 app.get("/user", async (req, res) => {
