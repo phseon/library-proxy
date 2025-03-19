@@ -16,7 +16,7 @@ const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    connectTimeout: 10000, // 10초 후 연결 시도 실패 처리. mysql 패키지에서는 acquireTimeout 사용
+    connectTimeout: 40000, // 10초 후 연결 시도 실패 처리. mysql 패키지에서는 acquireTimeout 사용
     enableKeepAlive: true, // TCP KeepAlive 활성화
     keepAliveInitialDelay: 0 // 즉시 KeepAlive 패킷 전송
 });
