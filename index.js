@@ -15,7 +15,11 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    connectTimeout: 10000, // 10초 후 연결 시도 실패 처리
+    acquireTimeout: 10000, // 10초 동안 연결을 기다림
+    enableKeepAlive: true, // TCP KeepAlive 활성화
+    keepAliveInitialDelay: 0 // 즉시 KeepAlive 패킷 전송
 });
 
 pool.getConnection()
